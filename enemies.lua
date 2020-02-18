@@ -17,6 +17,7 @@ invaders.current_direction = 'right'
 
 invaders.left_border_x = 40
 invaders.right_border_x = 10
+invaders.image = love.graphics.newImage('images/Enemy.png')
 
 invaders.current_level_invaders = {}
 
@@ -28,7 +29,8 @@ function invaders.new_invader( position_x, position_y )
     return { position_x = position_x,
                  position_y = position_y,
                  width = invaders.invader_width,
-                 height = invaders.invader_height}
+                 height = invaders.invader_height,
+                 image = invaders.image}
 end
 
 function invaders.destroy_invader( row, invader )
@@ -62,12 +64,19 @@ function invaders.construct_level()
     end
 end
 
+function getImageScaleForNewDimensions( image, newWidth, newHeight )
+    local currentWidth, currentHeight = image:getDimensions()
+    return ( newWidth / currentWidth ), ( newHeight / currentHeight )
+end
+local scaleX, scaleY = getImageScaleForNewDimensions( invaders.image, invaders.invader_width, invaders.invader_height )
+
 function invaders.draw_invader( single_invader )
-    love.graphics.rectangle('line',
+    love.graphics.draw(single_invader.image,
                        single_invader.position_x,
-                       single_invader.position_y,
-                       single_invader.width,
-                       single_invader.height )
+                       single_invader.position_y, 
+                       rotation, 
+                       scaleX, 
+                       scaleY )
 end
 
 function invaders.draw()

@@ -6,6 +6,13 @@ player.speed_x = 300
 
 player.width = 50
 player.height = 50
+player.image = love.graphics.newImage('images/Hero.png')
+
+function getImageScaleForNewDimensions( image, newWidth, newHeight )
+    local currentWidth, currentHeight = image:getDimensions()
+    return ( newWidth / currentWidth ), ( newHeight / currentHeight )
+end
+local scaleX, scaleY = getImageScaleForNewDimensions( player.image, player.width, player.height )
 
 function player.update( dt )
     if love.keyboard.isDown( "right" ) and 
@@ -18,13 +25,12 @@ function player.update( dt )
 end
 
 function player.draw()
-    love.graphics.rectangle(
-                       "fill",
+    love.graphics.draw(player.image,
                        player.position_x,
-                       player.position_y,
-                       player.width,
-                       player.height
-                 )
+                       player.position_y, 
+                       rotation, 
+                       scaleX, 
+                       scaleY )
 end
 
 return player
