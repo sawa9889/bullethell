@@ -1,5 +1,5 @@
 local collisions = {}
-local bullets   = require 'bullets'
+local bullets   = require 'bullets/bullets'
 
 function collisions.check_rectangles_overlap( a, b )
     local overlap = false
