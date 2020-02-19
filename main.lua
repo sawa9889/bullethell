@@ -1,5 +1,5 @@
 local player 			= require 'player'
-local invaders  		= require 'enemies'
+local enemies  			= require 'enemies/enemies'
 local bullets   		= require 'bullets/bullets'
 local bounce_bullet   	= require 'bullets/bounce_bullet'
 local normal_bullet   	= require 'bullets/bounce_bullet'
@@ -7,9 +7,7 @@ local tri_bullet   		= require 'bullets/tri_bullet'
 local blast_bullet   	= require 'bullets/blast_bullet'
 local collisions 		= require 'collision'
 
-key_pressed = 'x'
 function love.load() -- Запускается при запуске приложения
-        invaders.construct_level()
 end
 
 function love.keyreleased( key ) -- кнопка отжата`
@@ -28,14 +26,14 @@ end
 
 function love.draw() -- отрисовка каждый кадр?
     player.draw()
-    invaders.draw()
+    enemies.draw()
     bullets.draw()
 end
 
 function love.update( dt ) -- Каждый кадр
     player.update( dt )
-    invaders.update( dt )
-    collisions.resolve_collisions( invaders, walls, bullets )
+    enemies.update( dt )
+    collisions.resolve_collisions( enemies, bullets )
     bullets.update( dt )
 
 end

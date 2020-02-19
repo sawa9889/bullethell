@@ -1,4 +1,3 @@
-
 local bounce_bullet     = require 'bullets/bounce_bullet'
 local tri_bullet        = require 'bullets/tri_bullet'
 local blast_bullet      = require 'bullets/blast_bullet'
