@@ -32,6 +32,7 @@ function collisions.invaders_bullets_collision( enemies, bullets )
                 end
             end
         end
+        if bullet.position_y > love.graphics.getHeight() or bullet.position_y < 0 or bullet.position_x > love.graphics.getWidth() or bullet.position_x < 0 then bullets.destroy_bullet(b_i) end
     end
 end
 
